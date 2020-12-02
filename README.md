@@ -11,3 +11,26 @@ $ npm i -D apollo-server graphql mongoose
 
 [register]
 $ npm install bcryptjs jsonwebtoken
+
+[GraphQL]
+Apollo 에서 gql로 날리는 쿼리는 post로 날리는거와 다를바가 없다
+
+=> gql
+mutation {
+  login(username:"user", password:"123456"){
+    id
+    email
+    token
+    username
+    createdAt
+  }
+}
+
+=> post
+{
+    "query: "mutation{login(username:\"user\", password:\"123456\"){ id email token username createdAt }
+}
+
+사용자 인증은  JWT(JSON Web Token)사용하며
+일반적으로 많이 하는 express에 구성하는것은 보안상 별로 좋지않다
+apollo서버에 올렷다
