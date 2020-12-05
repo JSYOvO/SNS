@@ -3,20 +3,22 @@ const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server')
 
 const User = require('../../models/User');
-const { SECREAT_KEY } = require('../../config');
+const { SECRET_KEY } = require('../../config');
 const { validateRegisterInput, validateLoginInput } = require('../../util/validators');
 
 function generateToken(user) {
+    console.log(user)
     return jwt.sign(
-        {
-            id: user.id,
-            email: user.email,
-            username: user.username
-        }, 
-        SECREAT_KEY,
-        { expiresIn: '1h' }
+      {
+        id: user.id,
+        email: user.email,
+        username: user.username
+      },
+      SECRET_KEY,
+      { expiresIn: '1h' }
     );
-};
+  }
+
 
 module.exports = {
     Mutation: {
@@ -28,7 +30,7 @@ module.exports = {
             }
 
             const user = await User.findOne({ username });
-
+            
             if(!user) {
                 errors.general = 'User not found';
                 throw new UserInputError('User not found', { errors });
@@ -55,8 +57,6 @@ module.exports = {
             {
                 registerInput: {username, email, password, confirmPassword}
             },
-            context,
-            info
         ) {
             // TODO Validate user data
             const { valid, errors } = validateRegisterInput(username, email, password, confirmPassword);
