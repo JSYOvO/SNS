@@ -34,3 +34,8 @@ mutation {
 사용자 인증은  JWT(JSON Web Token)사용하며
 일반적으로 많이 하는 express에 구성하는것은 보안상 별로 좋지않다
 apollo서버에 올렷다
+
+
+[client]
+apollo install
+$ npm i -D @apollo/react-hooks apollo-cache-inmemory apollo-link-http apollo-client 
