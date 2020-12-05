@@ -39,3 +39,13 @@ apollo서버에 올렷다
 [client]
 apollo install
 $ npm i -D @apollo/react-hooks apollo-cache-inmemory apollo-link-http apollo-client 
+
+router install
+npm i -D react-router-dom
+
+   as={Link}
+  to="/"
+
+
+semantic-su install
+npm i -D semantic-ui-css semantic-ui-react
