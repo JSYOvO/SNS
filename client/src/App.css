@@ -5,3 +5,12 @@
     margin-top: 10px;
 
 }
+
+.register, .login {
+    width: 400px;
+    margin: auto
+}
+
+.register__loading {
+
+}
