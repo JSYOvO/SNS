@@ -49,3 +49,9 @@ npm i -D react-router-dom
 
 semantic-su install
 npm i -D semantic-ui-css semantic-ui-react
+
+[grapphql]
+npm i -D graphql graphql-tag
+
+
+npm i -D moment
