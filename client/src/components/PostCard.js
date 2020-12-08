@@ -1,19 +1,20 @@
 import { MongooseDocument } from 'mongoose';
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { Card, Icon, Label, Image, Button } from 'semantic-ui-react';
 import moment from 'moment';
+import { AuthContext } from '../context/auth';
+import LikeButton from './LikeButton';
 
 function PostCard({ post: {body, createdAt, id, username, likeCount, commentCount, likes} }) {
     
+    const { user } = useContext(AuthContext);
+
     function likePost() {
         console.log('like Post');
     }
 
-    function commentOnPost() {
-        console.log('comment On Post');
 
-    }
 
     return (
         <div className="postCard">
@@ -36,16 +37,9 @@ function PostCard({ post: {body, createdAt, id, username, likeCount, commentCoun
                 </Card.Content>
 
                 <Card.Content extra>
-                    <Button as="div" labelPosition="right" onClick={likePost}>
-                        <Button color="teal" basic>
-                            <Icon name="heart" />
-                        </Button>
-                        <Label basic color="teal" pointing="left">
-                            {likeCount}
-                        </Label>
-                    </Button>
+                    <LikeButton user={user} post={{ id, likes, likeCount }}/>
 
-                    <Button as="div" labelPosition="right" onClick={commentOnPost}>
+                    <Button as="div" labelPosition="right" as={Link} to={`/posts/${id}`}>
                         <Button color="blue" basic>
                             <Icon name="comments" />
                         </Button>
@@ -53,6 +47,12 @@ function PostCard({ post: {body, createdAt, id, username, likeCount, commentCoun
                             {commentCount}
                         </Label>
                     </Button>
+                    {user && user.username === username && (
+                        <Button as="div" color="red" floated="right" onClick={() => console.log("Delete post")}>
+                            <Icon name="trash" style={{margin: 0}}/>
+                        </Button>
+                        
+                    )}
                 </Card.Content>
             </Card>
         </div>

@@ -11,6 +11,7 @@
     margin: auto
 }
 
-.register__loading {
-
+.ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
 }
